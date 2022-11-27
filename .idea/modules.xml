@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BankAccount/BankAccount.iml" filepath="$PROJECT_DIR$/BankAccount/BankAccount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesignPattern/BuilderPattern/BuilderPattern.iml" filepath="$PROJECT_DIR$/DesignPattern/BuilderPattern/BuilderPattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" filepath="$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProject.iml" filepath="$PROJECT_DIR$/.idea/IdeaProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" filepath="$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" filepath="$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" filepath="$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" />
+    </modules>
+  </component>
+</project>
