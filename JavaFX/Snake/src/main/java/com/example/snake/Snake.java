@@ -1,58 +1,90 @@
 package com.example.snake;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.skin.TextInputControlSkin;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Snake extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        int snakePosX = 0;
+        int snakePosY = 0;
+        int speed = 0;
+        int foodPosX = 0;
+        int foodPosY = 0;
+        int ww = 0;
+        int wh = 0;
+
         stage.setTitle("Snake Classic");
 
 
         Group root = new Group();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(new Group(), 500,500);
+        scene.setFill(Color.WHITE);
+        final Rectangle rectPath = new Rectangle (0, 0, 40, 40);
+        rectPath.setArcHeight(10);
+        rectPath.setArcWidth(10);
+        rectPath.setFill(Color.ORANGE);
+        ((Group)scene.getRoot()).getChildren().addAll(rectPath);
         stage.setScene(scene);
 
-        Canvas canvas = new Canvas(512, 512);
-        root.getChildren().add(canvas);
+        //Canvas canvas = new Canvas(500, 500);
+        //root.getChildren().add(canvas);
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        AnimatedImage snake = new AnimatedImage();
-        Image[] imgArr = new Image[100];
-        for (int i = 0; i < 100; i++) {
-            imgArr[i] = new Image("C:\\Users\\DefconK1ll4\\Desktop\\GithubJava\\JavaFX\\Snake\\src\\main\\java\\com\\example\\snake\\snakeBox.png");
+
+
+        List<String> keys = new ArrayList<>();
+
+        scene.setOnKeyPressed(
+                e -> {
+                    String key = e.getCode().toString();
+                    if (!keys.contains(key)) {
+                        keys.add(key);
+                    }
+                });
+        scene.setOnKeyReleased(
+                e -> {
+                    String key = e.getCode().toString();
+                    keys.remove(key);
+                });
+
+        //GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        if(keys.)) {
+            new MoveTo(Direction.RIGHT);
         }
-        snake.frames = imgArr;
-        snake.duration = 0.100;
-
-        final long startNanoTime = System.nanoTime();
-        new AnimationTimer() {
-            public void handle(long currentNanoTime) {
-                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                double x = 232 + 128 * Math.cos(t);
-                double y = 232 + 128 * Math.sin(t);
-
-                gc.drawImage(snake.getFrame(t), 450, 25);
-            }
-        }.start();
-
         stage.show();
-        }
-
+    }
     public static void main(String[] args) {
         launch();
     }
