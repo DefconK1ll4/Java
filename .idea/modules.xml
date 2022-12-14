@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BankAccount/BankAccount.iml" filepath="$PROJECT_DIR$/BankAccount/BankAccount.iml" />
       <module fileurl="file://$PROJECT_DIR$/BubbleSort/BubbleSort.iml" filepath="$PROJECT_DIR$/BubbleSort/BubbleSort.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/BuilderPattern/BuilderPattern.iml" filepath="$PROJECT_DIR$/DesignPattern/BuilderPattern/BuilderPattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientServer/ClientServer.iml" filepath="$PROJECT_DIR$/ClientServer/ClientServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" filepath="$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProject.iml" filepath="$PROJECT_DIR$/.idea/IdeaProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaFX/Snake/Snake.iml" filepath="$PROJECT_DIR$/JavaFX/Snake/Snake.iml" />
