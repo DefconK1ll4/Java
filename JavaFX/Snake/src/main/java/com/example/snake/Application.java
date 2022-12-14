@@ -1,9 +1,11 @@
 package com.example.snake;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application extends javafx.application.Application {
+    static List<String> keys;
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         Snake snake = new Snake();
@@ -41,7 +45,7 @@ public class Application extends javafx.application.Application {
         // Canvas canvas = new Canvas(500, 500);
         // root.getChildren().add(canvas);
 
-        List<String> keys = new ArrayList<>();
+        keys = new ArrayList<>();
 
         EventHandler<KeyEvent> keyP = new EventHandler<KeyEvent>() {
             @Override
@@ -65,25 +69,32 @@ public class Application extends javafx.application.Application {
         //Group root = new Group(snakeBox);
         Scene scene = new Scene(new Group(snakeBox), 500, 500);
         scene.setFill(Color.WHITE);
+        scene.getRoot().
 
-        ((Group) scene.getRoot()).getChildren().addAll(snakeBox);
         stage.setScene(scene);
 
 
         //GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        if (keys.contains("LEFT")) {
-            if(!(snakeBox.getX()-100 < canvasW-snake.getWidth())) {
-                snakeBox.setX(currentPosX - 100);
+        new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                // Clear the canvas
+                if (keys.contains("RIGHT")) {
+
+                    if (!(snakeBox.getX() + 100 > canvasW - snake.getWidth())) {
+                        snakeBox.setX(currentPosX + 100);
+                    }
+                } else if (keys.contains("LEFT")) {
+                    if (!(snakeBox.getX() - 100 < canvasW - snake.getWidth())) {
+                        snakeBox.setX(currentPosX - 100);
+                    }
+                }
             }
-        } else if(keys.contains("RIGHT")) {
-            if(!(snakeBox.getX()+100 > canvasW-snake.getWidth())) {
-                snakeBox.setX(currentPosX + 100);
-            }
-        }
+        }.start();
         stage.show();
     }
-    public static void main(String[] args) {
-        launch();
+        public static void main (String[]args){
+            launch();
+        }
     }
-}
