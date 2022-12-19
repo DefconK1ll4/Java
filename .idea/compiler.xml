@@ -7,9 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Snake" />
+        <module name="SendIt" />
+        <module name="ShareCare" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SendIt" target="19" />
+      <module name="ShareCare" target="19" />
       <module name="Snake" target="19" />
     </bytecodeTargetLevel>
   </component>

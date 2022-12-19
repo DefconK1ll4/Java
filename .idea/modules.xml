@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/ClientServer/ClientServer.iml" filepath="$PROJECT_DIR$/ClientServer/ClientServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" filepath="$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProject.iml" filepath="$PROJECT_DIR$/.idea/IdeaProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SendIt/SendIt.iml" filepath="$PROJECT_DIR$/SendIt/SendIt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShareCare/ShareCare.iml" filepath="$PROJECT_DIR$/ShareCare/ShareCare.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaFX/Snake/Snake.iml" filepath="$PROJECT_DIR$/JavaFX/Snake/Snake.iml" />
       <module fileurl="file://$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" filepath="$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" filepath="$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" />

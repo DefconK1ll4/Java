@@ -3,5 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/JavaFX/Snake/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/JavaFX/Snake/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SendIt/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SendIt/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ShareCare/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ShareCare/src/main/resources" charset="UTF-8" />
   </component>
 </project>
