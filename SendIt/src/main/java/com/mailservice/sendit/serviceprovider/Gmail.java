@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class Gmail {
+public abstract class Gmail {
 
     /***
      * Med IMAP kan du läsa Gmail-meddelanden på flera enheter och meddelandena synkroniseras i realtid.

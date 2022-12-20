@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class iCloud {
+public abstract class iCloud {
     /***
      *
      IMAP-information för den inkommande iCloud Mail-servern

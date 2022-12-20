@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class Outlook {
+public abstract class Outlook {
 
     /***
      *  E-postleverantör

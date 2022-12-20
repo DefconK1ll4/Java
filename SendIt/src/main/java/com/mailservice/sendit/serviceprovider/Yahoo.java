@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class Yahoo {
+public abstract class Yahoo {
 
     /***
      * Incoming Mail (IMAP) Server

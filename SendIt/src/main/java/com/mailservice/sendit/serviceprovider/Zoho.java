@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class Zoho {
+public abstract class Zoho {
 
     /***
      * MAP is more recent than POP and allows a two-way synchronization between the email clients and your Zoho Mail account.

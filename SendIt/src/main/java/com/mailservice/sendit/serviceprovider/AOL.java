@@ -1,6 +1,6 @@
 package com.mailservice.sendit.serviceprovider;
 
-public class AOL {
+public abstract class AOL {
 
     /***
      * Setup Your Aol.com Account with Your Email Program Using IMAP
