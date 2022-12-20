@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mailservice.sendit.Controller">
   <columnConstraints>
@@ -50,9 +52,9 @@
             <Insets />
          </GridPane.margin>
       </PasswordField>
-      <Button mnemonicParsing="false" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" text="Login" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets />
+            <Insets right="50.0" />
          </GridPane.margin>
       </Button>
       <CheckBox mnemonicParsing="false" text="Remember me" GridPane.rowIndex="3">
@@ -60,5 +62,23 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </CheckBox>
+      <ComboBox fx:id="mailServiceProvider" prefWidth="150.0" promptText="Email Provider" GridPane.rowIndex="1">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Gmail" />
+               <String fx:value="iCloud" />
+               <String fx:value="Outlook" />
+               <String fx:value="Yahoo" />
+               <String fx:value="AOL" />
+               <String fx:value="Zoho" />
+            </FXCollections>
+         </items>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </ComboBox>
    </children>
 </GridPane>
