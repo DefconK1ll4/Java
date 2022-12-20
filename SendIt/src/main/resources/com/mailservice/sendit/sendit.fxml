@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mailservice.sendit.Controller">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="0.0" prefWidth="0.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="199.0" minHeight="165.0" prefHeight="198.0" />
+    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="198.0" fitWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@../../../1d8a5fca0b194dbbbfc7bbd0df186aba.png" />
+         </image>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <TextField maxWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </TextField>
+      <Label text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <PasswordField maxWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </PasswordField>
+      <Button mnemonicParsing="false" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Button>
+      <CheckBox mnemonicParsing="false" text="Remember me" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </CheckBox>
+   </children>
+</GridPane>
