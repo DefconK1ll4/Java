@@ -14,7 +14,6 @@
       <module fileurl="file://$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" filepath="$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" filepath="$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" />
       <module fileurl="file://$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" filepath="$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" />
-      <module fileurl="file://$PROJECT_DIR$/visma/visma.iml" filepath="$PROJECT_DIR$/visma/visma.iml" />
     </modules>
   </component>
 </project>

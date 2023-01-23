@@ -6,7 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="visma" />
         <module name="Snake" />
         <module name="SendIt" />
         <module name="ShareCare" />
@@ -16,12 +15,6 @@
       <module name="SendIt" target="19" />
       <module name="ShareCare" target="19" />
       <module name="Snake" target="19" />
-      <module name="visma" target="17" />
     </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="visma" options="-parameters" />
-    </option>
   </component>
 </project>

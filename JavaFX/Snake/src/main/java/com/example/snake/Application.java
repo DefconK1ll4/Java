@@ -69,7 +69,7 @@ public class Application extends javafx.application.Application {
         //Group root = new Group(snakeBox);
         Scene scene = new Scene(new Group(snakeBox), 500, 500);
         scene.setFill(Color.WHITE);
-        scene.getRoot().
+        scene.getRoot();
 
         stage.setScene(scene);
 
