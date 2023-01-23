@@ -1,7 +1,20 @@
 package com.mailservice.sendit.serviceprovider;
 
-public abstract class iCloud {
-    /***
+import com.mailservice.sendit.ServiceProvider;
+import com.mailservice.sendit.authentication.SSL;
+import com.mailservice.sendit.authentication.TLS;
+
+public abstract class iCloud extends ServiceProvider implements SSL, TLS {
+    @Override
+    public boolean isSSL() {
+        return false;
+    }
+
+    @Override
+    public boolean isTLS() {
+        return false;
+    }
+/***
      *
      IMAP-information för den inkommande iCloud Mail-servern
 

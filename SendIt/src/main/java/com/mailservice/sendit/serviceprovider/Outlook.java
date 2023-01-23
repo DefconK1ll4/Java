@@ -1,8 +1,20 @@
 package com.mailservice.sendit.serviceprovider;
 
-public abstract class Outlook {
+import com.mailservice.sendit.ServiceProvider;
+import com.mailservice.sendit.authentication.SSL;
+import com.mailservice.sendit.authentication.TLS;
 
-    /***
+public abstract class Outlook extends ServiceProvider implements SSL, TLS {
+    @Override
+    public boolean isSSL() {
+        return false;
+    }
+
+    @Override
+    public boolean isTLS() {
+        return false;
+    }
+/***
      *  E-postleverantör
      *
      *

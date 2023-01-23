@@ -1,8 +1,65 @@
 package com.mailservice.sendit.serviceprovider;
 
-public abstract class Zoho {
+import com.mailservice.sendit.ServiceProvider;
+import com.mailservice.sendit.authentication.SSL;
+import com.mailservice.sendit.authentication.TLS;
+import com.mailservice.sendit.mailprotocol.IMAP;
+import com.mailservice.sendit.mailprotocol.SMTP;
 
-    /***
+public abstract class Zoho extends ServiceProvider implements SSL, TLS, IMAP, SMTP {
+    private int outSMTPSSLPort = 465;
+    private int outSMTPTLSPort = 587;
+    private int inIMAPSSLPort = 993;
+    private boolean SSL = false;
+    private boolean TLS = false;
+    private String personalIncomingServerName = "imap.zoho.eu";
+    private String orgIncomingServerName = "imappro.zoho.eu";
+    private String personalOutServerName = "smtp.zoho.eu";
+    private String orgOutServerName = "smtppro.zoho.eu";
+
+    public Zoho() {
+
+    }
+
+    // Require SSL
+    @Override
+    public boolean isSSL() {
+        return SSL;
+    }
+
+    @Override
+    public boolean isTLS() {
+        return TLS;
+    }
+
+    public int getOutSMTPSSLPort() {
+        return outSMTPSSLPort;
+    }
+
+    public int getOutSMTPTLSPort() {
+        return outSMTPTLSPort;
+    }
+
+    public int getInIMAPSSLPort() {
+        return inIMAPSSLPort;
+    }
+
+    public String getPersonalIncomingServerName() {
+        return personalIncomingServerName;
+    }
+
+    public String getOrgIncomingServerName() {
+        return orgIncomingServerName;
+    }
+
+    public String getPersonalOutServerName() {
+        return personalOutServerName;
+    }
+
+    public String getOrgOutServerName() {
+        return orgOutServerName;
+    }
+/***
      * MAP is more recent than POP and allows a two-way synchronization between the email clients and your Zoho Mail account.
      * IMAP is recommended when you want to access the same account from multiple email clients.
      *

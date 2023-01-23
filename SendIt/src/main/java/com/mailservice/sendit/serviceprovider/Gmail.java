@@ -1,8 +1,20 @@
 package com.mailservice.sendit.serviceprovider;
 
-public abstract class Gmail {
+import com.mailservice.sendit.ServiceProvider;
+import com.mailservice.sendit.authentication.SSL;
+import com.mailservice.sendit.authentication.TLS;
 
-    /***
+public abstract class Gmail extends ServiceProvider implements SSL, TLS {
+    @Override
+    public boolean isSSL() {
+        return false;
+    }
+
+    @Override
+    public boolean isTLS() {
+        return false;
+    }
+/***
      * Med IMAP kan du läsa Gmail-meddelanden på flera enheter och meddelandena synkroniseras i realtid.
      * Du kan även läsa Gmail-meddelanden med hjälp av POP.
      *

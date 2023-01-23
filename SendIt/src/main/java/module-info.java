@@ -2,6 +2,7 @@ module com.mailservice.sendit {
     requires javafx.controls;
     requires javafx.fxml;
     requires mail;
+    requires activation;
 
 
     opens com.mailservice.sendit to javafx.fxml;

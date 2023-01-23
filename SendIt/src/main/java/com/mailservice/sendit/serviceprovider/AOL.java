@@ -1,8 +1,37 @@
 package com.mailservice.sendit.serviceprovider;
 
-public abstract class AOL {
+import com.mailservice.sendit.ServiceProvider;
+import com.mailservice.sendit.authentication.SSL;
+import com.mailservice.sendit.authentication.TLS;
+import com.mailservice.sendit.mailprotocol.IMAP;
+import com.mailservice.sendit.mailprotocol.SMTP;
 
-    /***
+public abstract class AOL extends ServiceProvider implements SSL, TLS, IMAP, SMTP {
+    @Override
+    public boolean isSSL() {
+        return false;
+    }
+
+    @Override
+    public boolean isTLS() {
+        return false;
+    }
+
+    @Override
+    public int getInIMAPSSLPort() {
+        return 0;
+    }
+
+    @Override
+    public int getOutSMTPSSLPort() {
+        return 0;
+    }
+
+    @Override
+    public int getOutSMTPTLSPort() {
+        return 0;
+    }
+/***
      * Setup Your Aol.com Account with Your Email Program Using IMAP
      *
      * To access your Aol.com email account from a desktop email program, you'll need the IMAP and SMTP settings below:

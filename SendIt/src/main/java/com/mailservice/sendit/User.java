@@ -4,16 +4,20 @@ import com.mailservice.sendit.mailprotocol.IMAP;
 import com.mailservice.sendit.mailprotocol.SMTP;
 import com.mailservice.sendit.serviceprovider.AOL;
 
-public class User extends AOL implements IMAP, SMTP {
-    @Override
-    public int getIMAPPort() {
-        return 0;
+public class User {
+    private String mailAddress;
+    private String appPwd;
+
+    public User(String email, String pwd) {
+        String mailAddress = email;
+        String appPwd = pwd;
     }
 
-    @Override
-    public int getSMTPPort() {
-        return 0;
+    public String getMailAddress() {
+        return mailAddress;
     }
 
-
+    public String getAppPwd() {
+        return appPwd;
+    }
 }
