@@ -28,9 +28,19 @@ public class Authentication {
         } else if(repo.findUserIfExist(user.getUsr())) {
             errorMsg = "Username already in use";
         } else {
+            errorMsg = "success";
             repo.addUserToDB(user);
         }
 
         return errorMsg;
+    }
+
+    public boolean authenticateUser(Registrator user) {
+        if(repo.findUserIfExist(user.getUsr())) {
+
+        }
+
+
+        return false;
     }
 }

@@ -25,8 +25,6 @@ import java.util.Map;
 public class AuthController {
     @Autowired
     Authentication auth;
-    @Autowired
-    DataSource dataSource;
 
     @GetMapping("login")
     public String whyMustIDoThis() {return "loginPage";}
@@ -40,8 +38,13 @@ public class AuthController {
             return "redirect:/visma/homepage";
 
         } else if(userDetails.getUsr() != null) {
-            session.setMaxInactiveInterval(60 * 30);
-            session.setAttribute("username", userDetails.getUsr());
+            if(auth.authenticateUser(userDetails)) {
+
+                session.setMaxInactiveInterval(60 * 30);
+                session.setAttribute("username", userDetails.getUsr());
+            }
+
+
 
             return "redirect:/visma/homepage";
         }
@@ -52,12 +55,15 @@ public class AuthController {
     }
 
     @PostMapping("register")
-    public String register(HttpSession session, @ModelAttribute Registrator userDetails) {
+    public String register(HttpSession session, RedirectAttributes redirect, @ModelAttribute Registrator userDetails) {
 
-        auth.validateUser(userDetails);
+        String msg = auth.validateUser(userDetails);
+        if(msg.equalsIgnoreCase("success")) {
+            return "redirect:login";
+        }
+        redirect.addAttribute("invalid", msg);
 
-
-        return "redirect:login";
+        return "redirect:register";
     }
 
     @GetMapping("logout")

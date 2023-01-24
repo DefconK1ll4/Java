@@ -12,10 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.time.LocalTime.now;
 
@@ -133,11 +130,23 @@ public class VismaRepository implements IVismaRepository {
     @Override
     public boolean findUserIfExist(String username) {
         boolean exist = false;
-        String user = jdbc.queryForObject("SELECT username FROM authentication", String.class);
-        if(user != null) {
-            exist = true;
+        Invoice inv = new Invoice();
+        List<String> usernames;
+        usernames = jdbc.queryForList("SELECT username FROM authentication", String.class);
+        if(usernames != null) {
+            if(usernames.contains(username)) {
+                exist = true;
+            }
         }
         return exist;
+    }
+    @Override
+    public Registrator retrieveCredentials(String username) {
+        Registrator user = new Registrator();
+        user = jdbc.queryForObject("SELECT username, password FROM authentication WHERE username="+username, Registrator.class);
+        if()
+
+        return user;
     }
 
     @Override
