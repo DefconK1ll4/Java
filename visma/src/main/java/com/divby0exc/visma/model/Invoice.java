@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Invoice {
     private String title;
-    private Date date;
     private String description;
     private String category;
     private double price;
@@ -15,14 +14,6 @@ public class Invoice {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getDescription() {

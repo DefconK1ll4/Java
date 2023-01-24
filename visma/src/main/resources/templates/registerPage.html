@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="/styling.css"/>
+    <title>Home Page</title>
 </head>
 <body>
+
+<form action="register" method="POST">
+    <h2>VISMA</h2>
+    <div>
+        <label for="usr">Username</label>
+        <input type="text" name="usr" id="usr" required minlength="8">
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" name="pwd" required minlength="8">
+    </div>
+
+    <!--<p th:if="${param.invalid != null}" th:text="${param.invalid}" />-->
+        <button class="btnReg" type="submit">Register</button>
+</form>
 
 </body>
 </html>
