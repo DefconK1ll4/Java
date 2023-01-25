@@ -1,13 +1,24 @@
 package com.divby0exc.visma.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
-public class Invoice {
+public class Receipt {
     private String title;
     private String description;
     private String category;
     private double price;
     private Date date;
+
+    public Receipt(){}
+
+    public Receipt(String title, String description, String category, double price) {
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.date = Date.valueOf(LocalDate.now());
+    }
 
     public Date getDate() {
         return date;

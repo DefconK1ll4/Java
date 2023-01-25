@@ -13,3 +13,16 @@ public class VismaApplication {
 	}
 
 }
+
+// TODO: 2023-01-25
+/**
+ * Implement edit and delete method in repo
+ *
+ * Implement methods from repo into edit and delete controller
+ *
+ * Retrieve info from an invoice etc
+ *
+ * Add rest of the repo methods in service and evaluate things
+ *
+ * Design the pages a bit better
+ */

@@ -1,18 +1,17 @@
 package com.divby0exc.visma.repository;
 
-import com.divby0exc.visma.model.Invoice;
-import com.divby0exc.visma.model.InvoiceList;
+import com.divby0exc.visma.model.Receipt;
+import com.divby0exc.visma.model.ReceiptList;
 import com.divby0exc.visma.model.Registrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 
 import static java.time.LocalTime.now;
@@ -38,15 +37,16 @@ public class VismaRepository implements IVismaRepository {
     JdbcTemplate jdbc;
 
     @Override
-    public void addInvoice(Invoice invoice, String username) {
+    public void addReceipt(Receipt receipt, String username) {
         SimpleJdbcInsert jdbcInsert =
                 new SimpleJdbcInsert(dataSource).withTableName("invoice");
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("ownerId", findId(username));
-        param.put("title", invoice.getTitle());
-        param.put("description", invoice.getDescription());
-        param.put("category", invoice.getCategory());
-        param.put("price", invoice.getPrice());
+        param.put("title", receipt.getTitle());
+        param.put("description", receipt.getDescription());
+        param.put("category", receipt.getCategory());
+        param.put("price", receipt.getPrice());
+        param.put("date", Date.valueOf(LocalDate.now()));
 
         jdbcInsert.execute(param);
     }
@@ -60,15 +60,15 @@ public class VismaRepository implements IVismaRepository {
     }
 
     @Override
-    public void editInvoice(Invoice invoice) {
+    public void editReceipt(Receipt receipt) {
 
 
     }
 
     @Override
-    public InvoiceList getAllInvoices(String username) throws SQLException {
+    public ReceiptList getAllReceipts(String username) throws SQLException {
 
-        InvoiceList invoices = new InvoiceList(username);
+        ReceiptList recipes = new ReceiptList(username);
 
         try {
             con = DriverManager.getConnection(CONNECTION_STRING, "root", "");
@@ -84,14 +84,14 @@ public class VismaRepository implements IVismaRepository {
 
             do {
                 // title, description, category, price
-                Invoice invoice = new Invoice();
-                invoice.setTitle(rs.getString("title"));
-                invoice.setDescription(rs.getString("description"));
-                invoice.setCategory(rs.getString("category"));
-                invoice.setPrice(rs.getDouble("price"));
-                invoice.setDate(rs.getDate("date"));
+                Receipt receipt = new Receipt();
+                receipt.setTitle(rs.getString("title"));
+                receipt.setDescription(rs.getString("description"));
+                receipt.setCategory(rs.getString("category"));
+                receipt.setPrice(rs.getDouble("price"));
+                receipt.setDate(rs.getDate("date"));
 
-                invoices.getInvoices().add(invoice);
+                recipes.getRecipes().add(receipt);
 
             } while (rs.next());
 
@@ -101,18 +101,18 @@ public class VismaRepository implements IVismaRepository {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("Something went wrong " + e.getMessage());
+            System.out.println("Error message: " + e.getMessage());
             e.printStackTrace();
         }
             assert rs == null : "ResultSet wasn't closed properly in repo";
             assert ps == null : "PreparedStatement wasn't closed properly in repo";
             assert con == null : "Connection wasn't closed properly in repo";
 
-            return invoices;
+            return recipes;
     }
 
         @Override
-    public void deleteInvoice(int id) {
+    public void deleteReceipt(int id) {
 
     }
 

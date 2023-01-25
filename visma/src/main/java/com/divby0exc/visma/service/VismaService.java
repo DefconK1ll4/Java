@@ -1,13 +1,11 @@
 package com.divby0exc.visma.service;
 
-import com.divby0exc.visma.model.Invoice;
-import com.divby0exc.visma.model.InvoiceList;
+import com.divby0exc.visma.model.ReceiptList;
 import com.divby0exc.visma.repository.VismaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.List;
 
 @Service
 public class VismaService {
@@ -15,14 +13,14 @@ public class VismaService {
     VismaRepository repo;
 
 
-    public InvoiceList showAllInvoices(String username) throws SQLException {
-        InvoiceList invoices = repo.getAllInvoices(username);
+    public ReceiptList showAllRecipes(String username) throws SQLException {
+        ReceiptList recipt = repo.getAllReceipts(username);
 
-        if(invoices == null) {
-            invoices = new InvoiceList(username);
+        if(recipt == null) {
+            recipt = new ReceiptList(username);
         }
 
-        return invoices;
+        return recipt;
     }
 
 

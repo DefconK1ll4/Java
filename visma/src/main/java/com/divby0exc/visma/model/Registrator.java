@@ -4,6 +4,7 @@ public class Registrator {
     private String usr;
     private String pwd;
     private int id;
+    private boolean isAdmin;
 
     public String getUsr() {
         return usr;

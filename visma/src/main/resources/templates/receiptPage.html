@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Showing registered receipts</title>
+</head>
+<body>
+<form action="/authentication/logout" method="GET">
+    <button type="submit">Logout</button>
+</form>
+<form action="/receipt_page/new" method="GET">
+    <button type="submit">Register a new receipt</button>
+</form>
+<p th:if="${param.loggedInAs != null}" th:text="${param.loggedInAs}" />
+<h1>Listing all your recipes</h1>
+<br>
+<br>
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <th:block th:if="${receipt=='NoData'}"> No receipts registered yet </th:block>
+    <tbody>
+    <tr th:each="receip: ${receipt}">
+        <td th:text="${receip.title}" />
+        <td th:text="${receip.date}" />
+        <td th:text="${receip.description}" />
+        <td th:text="${receip.category}" />
+        <td th:text="${receip.price}" />
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
