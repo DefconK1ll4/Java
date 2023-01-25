@@ -4,9 +4,10 @@ import com.divby0exc.visma.model.Invoice;
 import com.divby0exc.visma.model.InvoiceList;
 import com.divby0exc.visma.model.Registrator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,7 @@ public class VismaRepository implements IVismaRepository {
     public String insertStmt = "INSERT INTO invoice (ownerId, title, description, category, price) " +
             "VALUES (?, ?, ?, ?, ?)";
     private ResultSet rs = null;
-    private PreparedStatement pstmt = null;
+    private PreparedStatement ps = null;
     private Connection con = null;
 
     @Autowired
@@ -38,37 +39,24 @@ public class VismaRepository implements IVismaRepository {
 
     @Override
     public void addInvoice(Invoice invoice, String username) {
-        try {
-            con = DriverManager.getConnection(CONNECTION_STRING);
-            pstmt = con.prepareStatement(getIdFromUser);
+        SimpleJdbcInsert jdbcInsert =
+                new SimpleJdbcInsert(dataSource).withTableName("invoice");
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("ownerId", findId(username));
+        param.put("title", invoice.getTitle());
+        param.put("description", invoice.getDescription());
+        param.put("category", invoice.getCategory());
+        param.put("price", invoice.getPrice());
 
-            pstmt.setString(1, username);
+        jdbcInsert.execute(param);
+    }
 
-            rs = pstmt.executeQuery();
+    public int findId(String username) {
+        int ownerId = jdbc.queryForObject("SELECT id FROM authentication WHERE username=?", Integer.class, username);
 
-            int ownerId = rs.getInt("id");
+        System.out.println(ownerId);
 
-            pstmt = con.prepareStatement(insertStmt);
-
-            pstmt.setInt(1, ownerId);
-            pstmt.setString(2, invoice.getTitle());
-            pstmt.setString(3, invoice.getDescription());
-            pstmt.setString(4, invoice.getCategory());
-            pstmt.setDouble(5, invoice.getPrice());
-
-            pstmt.execute();
-
-            rs.close();
-            pstmt.close();
-            con.close();
-
-        } catch (SQLException e) {
-            System.out.println("Something went wrong " + e.getMessage());
-            e.printStackTrace();
-        }
-        assert rs == null : "ResultSet wasn't closed properly in repo";
-        assert pstmt == null : "PreparedStatement wasn't closed properly in repo";
-        assert con == null : "Connection wasn't closed properly in repo";
+        return ownerId;
     }
 
     @Override
@@ -83,12 +71,12 @@ public class VismaRepository implements IVismaRepository {
         InvoiceList invoices = new InvoiceList(username);
 
         try {
-            con = DriverManager.getConnection(CONNECTION_STRING);
-            pstmt = con.prepareStatement(linkSql);
+            con = DriverManager.getConnection(CONNECTION_STRING, "root", "");
+            ps = con.prepareStatement(linkSql);
 
-            pstmt.setString(1, username);
+            ps.setString(1, username);
 
-            rs = pstmt.executeQuery();
+            rs = ps.executeQuery();
 
             if (!rs.next()) {
                 return null;
@@ -101,6 +89,7 @@ public class VismaRepository implements IVismaRepository {
                 invoice.setDescription(rs.getString("description"));
                 invoice.setCategory(rs.getString("category"));
                 invoice.setPrice(rs.getDouble("price"));
+                invoice.setDate(rs.getDate("date"));
 
                 invoices.getInvoices().add(invoice);
 
@@ -108,7 +97,7 @@ public class VismaRepository implements IVismaRepository {
 
 
             rs.close();
-            pstmt.close();
+            ps.close();
             con.close();
 
         } catch (SQLException e) {
@@ -116,7 +105,7 @@ public class VismaRepository implements IVismaRepository {
             e.printStackTrace();
         }
             assert rs == null : "ResultSet wasn't closed properly in repo";
-            assert pstmt == null : "PreparedStatement wasn't closed properly in repo";
+            assert ps == null : "PreparedStatement wasn't closed properly in repo";
             assert con == null : "Connection wasn't closed properly in repo";
 
             return invoices;
@@ -130,7 +119,6 @@ public class VismaRepository implements IVismaRepository {
     @Override
     public boolean findUserIfExist(String username) {
         boolean exist = false;
-        Invoice inv = new Invoice();
         List<String> usernames;
         usernames = jdbc.queryForList("SELECT username FROM authentication", String.class);
         if(usernames != null) {
@@ -143,13 +131,34 @@ public class VismaRepository implements IVismaRepository {
     @Override
     public Registrator retrieveCredentials(String username) {
         Registrator user = new Registrator();
-        user = jdbc.queryForObject("SELECT username, password FROM authentication WHERE username="+username, Registrator.class);
-        if()
+        try {
+            con = DriverManager.getConnection(CONNECTION_STRING, "root", "");
+            ps = con.prepareStatement("SELECT * FROM authentication WHERE username=?");
 
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            if(!rs.next()) {return null;}
+
+                user.setUsr(rs.getString("username"));
+                user.setPwd(rs.getString("password"));
+                System.out.println(user.getUsr() + " From DB");
+                System.out.println(user.getPwd() + " From DB");
+
+                rs.close();
+                ps.close();
+                con.close();
+
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong " + e.getMessage());
+            e.printStackTrace();
+        }
         return user;
     }
 
-    @Override
+        @Override
     public void addUserToDB(Registrator user) {
         SimpleJdbcInsert jdbcInsert =
                 new SimpleJdbcInsert(dataSource).withTableName("authentication");

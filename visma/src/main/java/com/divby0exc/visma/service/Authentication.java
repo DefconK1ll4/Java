@@ -4,14 +4,15 @@ import com.divby0exc.visma.model.Registrator;
 import com.divby0exc.visma.repository.VismaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
+
+import java.sql.PseudoColumnUsage;
 
 @Service
 public class Authentication {
     @Autowired
     VismaRepository repo;
 
-    public String validateUser(Registrator user) {
+    public String validateNewUser(Registrator user) {
         final int MAX_LENGTH = 15;
         final int MIN_LENGTH = 8;
         boolean isBlank = (user.getUsr() == null || user.getUsr().isBlank() || user.getUsr().isEmpty());
@@ -36,11 +37,20 @@ public class Authentication {
     }
 
     public boolean authenticateUser(Registrator user) {
-        if(repo.findUserIfExist(user.getUsr())) {
+        System.out.println(user.getUsr() + " From Form");
+        System.out.println(user.getPwd() + " From Form");
+        boolean userExist = repo.findUserIfExist(user.getUsr());
 
-        }
-
-
-        return false;
+        if(!userExist) {
+            System.err.println("User was not found in database");
+            return false;
+        } else if(repo.retrieveCredentials(user.getUsr())==null) {
+            System.err.println("To be retrieved user was null");
+            return false;
+        } else if(!(repo.retrieveCredentials(user.getUsr()).getUsr().equals(user.getUsr())
+        && repo.retrieveCredentials(user.getUsr()).getPwd().equals(user.getPwd()))) {
+            System.err.println("User credentials didn't match");
+            return false;
+        } else return true;
     }
 }

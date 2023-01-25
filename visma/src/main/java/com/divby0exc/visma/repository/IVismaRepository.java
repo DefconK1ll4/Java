@@ -23,9 +23,4 @@ public interface IVismaRepository {
     public void addUserToDB(Registrator user);
 
     public Registrator retrieveCredentials(String username);
-    }
-
-
-
-
 }
