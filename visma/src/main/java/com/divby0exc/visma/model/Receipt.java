@@ -8,7 +8,7 @@ public class Receipt {
     private String description;
     private String category;
     private double price;
-    private Date date = Date.valueOf(LocalDate.now());
+    private Date date;
     private int id;
 
     public Receipt(){}

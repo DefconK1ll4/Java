@@ -21,7 +21,7 @@ public class EditPageController {
         Receipt editReceipt = vismaService.findReceiptById(id);
         model.addAttribute("receipt", editReceipt);
 
-        return "editPage";
+        return "newEditReceiptPage";
     }
 
     @PostMapping("save_edit")

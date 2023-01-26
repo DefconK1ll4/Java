@@ -18,9 +18,9 @@ public class AuthController {
     Authentication auth;
 
     @GetMapping("login")
-    public String showLoginPage() {return "loginPage";}
+    public String showLoginPage() {return "newLoginPage";}
     @GetMapping("register")
-    public String showRegisterPage() {return "registerPage";}
+    public String showRegisterPage() {return "newRegisterPage";}
 
     @PostMapping("login")
     public String login(HttpSession session, RedirectAttributes redirect, @ModelAttribute Registrator userDetails) {

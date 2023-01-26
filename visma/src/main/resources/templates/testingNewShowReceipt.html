@@ -9,14 +9,22 @@
   <title>Showing registered receipts</title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
         rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <style>
+  .btn-primary {
+    --bs-btn-border-radius: .5rem;
+  }
+  </style>
 </head>
 <body class="container">
-<form action="/authentication/logout" method="GET">
-  <button type="submit">Logout</button>
-</form>
-<form action="/receipt_page/new" method="GET">
-  <button type="submit">Register a new receipt</button>
-</form>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+      <a class=" btn btn-outline-primary bi bi-plus-square" th:href="@{/receipt_page/new}"> New receipt</a>
+        <a class=" btn btn-outline-danger bi bi-door-open" th:href="@{/authentication/logout}"> Logout</a>
+  </div>
+</nav>
+
+
 <form class="col card p-3 my-5" method="post" th:action="@{/receipt_page/new}" th:object="${receipt}">
 <table class="table table-striped table-bordered ">
   <tr>
@@ -25,6 +33,8 @@
     <th>Description</th>
     <th>Category</th>
     <th>Price</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   <tr th:each="receip : ${receipt}">
     <td class="align-middle" th:text="${receip.title}"></td>
@@ -32,7 +42,8 @@
     <td class="align-middle" th:text="${receip.description}"></td>
     <td class="align-middle" th:text="${receip.category}"></td>
     <td class="align-middle" th:text="${receip.price}"></td>
-    <td class="align-middle text-center"><a class="btn btn-secondary" th:href="'/' + ${receip.id}">✏</a></td>
+    <td class="align-middle text-center"><a class="btn btn-outline-primary bi bi-pencil" th:href="@{/edit_page/receipt/{id}(id=${receip.id})}"></a></td>
+    <td class="align-middle text-center"><a class=" btn btn-outline-danger bi-trash3-fill" th:href="@{/delete_page/receipt/{id}(id=${receip.id})}"></a></td>
   </tr>
 </table>
 </body>
