@@ -1,7 +1,6 @@
 package com.divby0exc.visma.controller;
 
 import com.divby0exc.visma.model.ReceiptList;
-import com.divby0exc.visma.repository.VismaRepository;
 import com.divby0exc.visma.service.VismaService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,8 @@ public class InvoicePageController {
         model.addAttribute("loggedInAs", username);
 
 
-        return "receiptPage";
+        //return "receiptPage";
+        return "testingNewShowReceipt";
     }
 
 }

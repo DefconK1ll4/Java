@@ -25,7 +25,7 @@ public class PaymentPageController {
         Receipt newReceipt = new Receipt();
         model.addAttribute("receipt", newReceipt);
 
-        return "paymentPage";
+        return "testingNewRegisterReceipt";
     }
 
     @PostMapping("new")
