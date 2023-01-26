@@ -31,7 +31,7 @@ public class PaymentPageController {
     @PostMapping("new")
     public String registerReceipt(HttpSession session, @ModelAttribute("receipt") Receipt receipt) {
         String username = (String) session.getAttribute("username");
-        repo.addReceipt(receipt, username);
+        vismaService.registerReceipt(receipt, username);
 
         return "redirect:/visma/homepage";
     }

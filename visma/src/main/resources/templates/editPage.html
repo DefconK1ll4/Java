@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Registration</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text] {
+            display: inline-block;
+            width: 200px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-<form action="/visma/edit" method="POST">
+<div align="center">
+    <h1>Edit Receipt</h1>
+    <form action="#" th:action="@{/edit_page/receipt}" method="post" th:object="${receipt}">
+        <input type="hidden" th:field="*{id}" />
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" /><br/>
 
-</form>
+        <label>Category:</label>
+        <input type="text" th:field="*{category}" /><br/>
 
+        <label>Description:</label>
+        <textarea rows="5" cols="25" th:field="*{description}"></textarea>
+        <br/>
+
+        <label>Date:</label>
+        <label th:block="*{date}" /><br/>
+
+        <label>Price:</label>
+        <input type="number" th:field="*{price}" /><br/>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
 </body>
 </html>

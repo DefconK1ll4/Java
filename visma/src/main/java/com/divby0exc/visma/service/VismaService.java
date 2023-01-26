@@ -1,11 +1,13 @@
 package com.divby0exc.visma.service;
 
+import com.divby0exc.visma.model.Receipt;
 import com.divby0exc.visma.model.ReceiptList;
 import com.divby0exc.visma.repository.VismaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class VismaService {
@@ -21,6 +23,22 @@ public class VismaService {
         }
 
         return recipt;
+    }
+
+    public void registerReceipt(Receipt receipt, String username) {
+        repo.addReceipt(receipt,username);
+    }
+
+    public Receipt findReceiptById(int id) {
+        return repo.getReceiptById(id);
+    }
+
+    public void editReceipt(Receipt receipt) {
+        repo.editReceipt(receipt);
+    }
+
+    public void deleteReceipt(int id) {
+        repo.deleteReceipt(id);
     }
 
 

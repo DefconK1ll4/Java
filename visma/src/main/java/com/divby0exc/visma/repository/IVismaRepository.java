@@ -10,15 +10,19 @@ public interface IVismaRepository {
 
     public void addReceipt(Receipt receipt, String username);
 
-    public void editReceipt(Receipt receipt);
+    public int editReceipt(Receipt receipt);
 
     public ReceiptList getAllReceipts(String username) throws SQLException;
 
-    public void deleteReceipt(int id) throws SQLException;
+    public int deleteReceipt(int id) throws SQLException;
 
     public boolean findUserIfExist(String username);
 
     public void addUserToDB(Registrator user);
 
     public Registrator retrieveCredentials(String username);
+
+    public Receipt getReceiptById(int id);
+
+    public int findId(String username);
 }

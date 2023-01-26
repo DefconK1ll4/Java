@@ -18,8 +18,6 @@ import static java.time.LocalTime.now;
 @RequestMapping("/visma")
 public class InvoicePageController {
     @Autowired
-    VismaRepository repo;
-    @Autowired
     VismaService vismaService;
 
     @GetMapping("/homepage")

@@ -8,7 +8,8 @@ public class Receipt {
     private String description;
     private String category;
     private double price;
-    private Date date;
+    private Date date = Date.valueOf(LocalDate.now());
+    private int id;
 
     public Receipt(){}
 
@@ -18,6 +19,14 @@ public class Receipt {
         this.category = category;
         this.price = price;
         this.date = Date.valueOf(LocalDate.now());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDate() {

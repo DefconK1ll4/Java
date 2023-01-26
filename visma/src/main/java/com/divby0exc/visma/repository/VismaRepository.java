@@ -51,6 +51,7 @@ public class VismaRepository implements IVismaRepository {
         jdbcInsert.execute(param);
     }
 
+    @Override
     public int findId(String username) {
         int ownerId = jdbc.queryForObject("SELECT id FROM authentication WHERE username=?", Integer.class, username);
 
@@ -60,9 +61,33 @@ public class VismaRepository implements IVismaRepository {
     }
 
     @Override
-    public void editReceipt(Receipt receipt) {
+    public int editReceipt(Receipt receipt) {
+        String editSql = "UPDATE invoice SET title = :title, " +
+                "SET description = :description, " +
+                "SET date = :date, SET price = :price, " +
+                "SET category = :category" +
+                " WHERE id = :id";
+        Map<String, Object> param = new HashMap<>();
+        param.put("id", receipt.getId());
+        param.put("title", receipt.getTitle());
+        param.put("description", receipt.getDescription());
+        param.put("date", receipt.getDate());
+        param.put("price", receipt.getPrice());
+        param.put("category", receipt.getCategory());
 
+        return jdbc.update(editSql, param);
+    }
+    @Override
+    public int deleteReceipt(int id) {
+        String sql = "DELETE FROM invoice WHERE id = ?";
 
+        return jdbc.update(sql,id);
+    }
+
+    @Override
+    public Receipt getReceiptById(int id) {
+        Receipt receipt = jdbc.queryForObject("SELECT title, description, price, category, id, date FROM invoice WHERE id=?", Receipt.class, id);
+        return receipt;
     }
 
     @Override
@@ -90,6 +115,7 @@ public class VismaRepository implements IVismaRepository {
                 receipt.setCategory(rs.getString("category"));
                 receipt.setPrice(rs.getDouble("price"));
                 receipt.setDate(rs.getDate("date"));
+                receipt.setId(rs.getInt("id"));
 
                 recipes.getRecipes().add(receipt);
 
@@ -109,11 +135,6 @@ public class VismaRepository implements IVismaRepository {
             assert con == null : "Connection wasn't closed properly in repo";
 
             return recipes;
-    }
-
-        @Override
-    public void deleteReceipt(int id) {
-
     }
 
     @Override

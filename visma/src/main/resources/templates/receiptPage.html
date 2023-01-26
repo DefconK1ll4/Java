@@ -32,9 +32,13 @@
     <tr th:each="receip: ${receipt}">
         <td th:text="${receip.title}" />
         <td th:text="${receip.date}" />
-        <td th:text="${receip.description}" />
+        <td th:f#fields="${receip.description}" />
         <td th:text="${receip.category}" />
         <td th:text="${receip.price}" />
+        <td> <a th:href="@{/edit_page/receipt/{id}(id=${receip.id})}"
+                class="btn btn-primary">Edit</a>
+            <a th:href="@{/delete_page/receipt/{id}(id=${receip.id})}"
+               class="btn btn-danger">Delete</a>
     </tr>
     </tbody>
 </table>

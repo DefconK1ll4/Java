@@ -18,9 +18,9 @@ public class AuthController {
     Authentication auth;
 
     @GetMapping("login")
-    public String whyMustIDoThis() {return "loginPage";}
+    public String showLoginPage() {return "loginPage";}
     @GetMapping("register")
-    public String whyMustIDoThis2() {return "registerPage";}
+    public String showRegisterPage() {return "registerPage";}
 
     @PostMapping("login")
     public String login(HttpSession session, RedirectAttributes redirect, @ModelAttribute Registrator userDetails) {

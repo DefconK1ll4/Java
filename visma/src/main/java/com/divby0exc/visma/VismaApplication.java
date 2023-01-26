@@ -25,4 +25,10 @@ public class VismaApplication {
  * Add rest of the repo methods in service and evaluate things
  *
  * Design the pages a bit better
+ *
+ * implement the new login page
+ *
+ * implement the new register page
+ *
+ * find a nicer form to register receipt
  */
