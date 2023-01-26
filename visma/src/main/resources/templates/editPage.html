@@ -23,8 +23,10 @@
 <body>
 <div align="center">
     <h1>Edit Receipt</h1>
-    <form action="#" th:action="@{/edit_page/receipt}" method="post" th:object="${receipt}">
+    <form action="#" th:action="@{/edit_page/save_edit}" method="POST" th:object="${receipt}">
+
         <input type="hidden" th:field="*{id}" />
+
         <label>Title:</label>
         <input type="text" th:field="*{title}" /><br/>
 

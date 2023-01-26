@@ -24,8 +24,8 @@ public class EditPageController {
         return "editPage";
     }
 
-    @PostMapping
-    public String saveReceipt(@ModelAttribute Receipt receipt) {
+    @PostMapping("save_edit")
+    public String saveReceipt(@ModelAttribute("receipt") Receipt receipt) {
         vismaService.editReceipt(receipt);
 
         return "redirect:/visma/homepage";

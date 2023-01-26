@@ -10,7 +10,7 @@ public interface IVismaRepository {
 
     public void addReceipt(Receipt receipt, String username);
 
-    public int editReceipt(Receipt receipt);
+    public int updateReceipt(Receipt receipt);
 
     public ReceiptList getAllReceipts(String username) throws SQLException;
 

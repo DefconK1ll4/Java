@@ -5,6 +5,7 @@ import com.divby0exc.visma.model.ReceiptList;
 import com.divby0exc.visma.model.Registrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ import java.util.*;
 import static java.time.LocalTime.now;
 
 @Repository
-public class VismaRepository implements IVismaRepository {
+public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
     public final String DB_NAME = "visma";
     public final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/visma";
     public String getIdFromUser = "SELECT id FROM authentication WHERE username=?";
@@ -61,21 +62,13 @@ public class VismaRepository implements IVismaRepository {
     }
 
     @Override
-    public int editReceipt(Receipt receipt) {
-        String editSql = "UPDATE invoice SET title = :title, " +
-                "SET description = :description, " +
-                "SET date = :date, SET price = :price, " +
-                "SET category = :category" +
-                " WHERE id = :id";
-        Map<String, Object> param = new HashMap<>();
-        param.put("id", receipt.getId());
-        param.put("title", receipt.getTitle());
-        param.put("description", receipt.getDescription());
-        param.put("date", receipt.getDate());
-        param.put("price", receipt.getPrice());
-        param.put("category", receipt.getCategory());
+    public int updateReceipt(Receipt receipt) {
+        String updateSql = "UPDATE invoice SET title = ?, category = ?, description  = ?, price  = ?, date = ? where id = ?";
 
-        return jdbc.update(editSql, param);
+        return jdbc.update(updateSql, receipt.getTitle(),
+                receipt.getCategory(), receipt.getDescription(),
+                receipt.getPrice(),
+                receipt.getDate(), receipt.getId());
     }
     @Override
     public int deleteReceipt(int id) {
@@ -86,7 +79,22 @@ public class VismaRepository implements IVismaRepository {
 
     @Override
     public Receipt getReceiptById(int id) {
-        Receipt receipt = jdbc.queryForObject("SELECT title, description, price, category, id, date FROM invoice WHERE id=?", Receipt.class, id);
+        String sql = "SELECT * FROM invoice WHERE id = ?";
+        Receipt receipt =
+                jdbc.queryForObject(sql, new Object[] { id }, new VismaRepository());
+
+        return receipt;
+    }
+    @Override
+    public Receipt mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Receipt receipt = new Receipt();
+        receipt.setTitle(rs.getString("title"));
+        receipt.setCategory(rs.getString("category"));
+        receipt.setPrice(rs.getDouble("price"));
+        receipt.setDescription(rs.getString("description"));
+        receipt.setDate(rs.getDate("date"));
+        receipt.setId(rs.getInt("id"));
+
         return receipt;
     }
 

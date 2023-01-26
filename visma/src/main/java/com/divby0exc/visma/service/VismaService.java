@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class VismaService {
@@ -34,7 +33,7 @@ public class VismaService {
     }
 
     public void editReceipt(Receipt receipt) {
-        repo.editReceipt(receipt);
+        repo.updateReceipt(receipt);
     }
 
     public void deleteReceipt(int id) {
