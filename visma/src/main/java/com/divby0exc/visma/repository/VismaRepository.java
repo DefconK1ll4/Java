@@ -177,8 +177,6 @@ public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
 
                 user.setUsr(rs.getString("username"));
                 user.setPwd(rs.getString("password"));
-                System.out.println(user.getUsr() + " From DB");
-                System.out.println(user.getPwd() + " From DB");
 
                 rs.close();
                 ps.close();
