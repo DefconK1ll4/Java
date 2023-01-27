@@ -63,8 +63,8 @@
   </div>
   <div>
     <input class="btn btn-outline-primary" type="submit" value="Register receipt">
-    <form action="#" th:action="@{/visma/homepage}" method="get">
-      <input class="btn btn-outline-primary" type="submit" value="Back">
+    <form action="/visma/homepage" th:action="@{/visma/homepage}" method="get">
+      <input class="btn btn-outline-danger" type="submit" value="Back" data-toggle="tooltip" title="Any unsaved changes will be deleted">
     </form>
   </div>
 </form>

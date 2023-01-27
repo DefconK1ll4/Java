@@ -68,13 +68,11 @@
            type="text" th:field="*{price}"/>
   </div>
   <div>
-    <input class="btn btn-primary" type="submit" value="Save">
+    <input class="btn btn-outline-primary" type="submit" value="Save">
     <form action="#" th:action="@{/visma/homepage}" method="get">
-      <input class="btn btn-primary" type="submit" value="Back">
+      <input class="btn btn-outline-danger" type="submit" value="Back" data-toggle="tooltip" title="Any unsaved changes will be deleted">
     </form>
   </div>
-
 </form>
-
 </body>
 </html>
