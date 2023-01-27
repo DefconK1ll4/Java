@@ -37,6 +37,8 @@ public class VismaApplication {
 // TODO
 /***
  * Obvious flaws
- * back button on edit page
+ * back button on edit page still saves the edit -.-
+ * i cannot move the back button form outside the save form without breaking design.
+ *
  */
 
