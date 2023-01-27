@@ -5,10 +5,22 @@ import com.divby0exc.visma.repository.VismaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.sql.PseudoColumnUsage;
+import java.util.Base64;
 
 @Service
 public class Authentication {
+    private String algo = "AES/CBC/PKCS5Padding";
     @Autowired
     VismaRepository repo;
 
@@ -50,4 +62,39 @@ public class Authentication {
             return false;
         } else return true;
     }
+    public SecretKey pwdKey(String pwd, String salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+        KeySpec spec = new PBEKeySpec(pwd.toCharArray(), salt.getBytes(), 65536, 256);
+        SecretKey secret = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+
+        return secret;
+    }
+    public IvParameterSpec generateIv() {
+        byte[] iv = new byte[16];
+        new SecureRandom().nextBytes(iv);
+
+        return new IvParameterSpec(iv);
+    }
+    public String encrypt(String algo, String in, SecretKey key, IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance(algo);
+        cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+        byte[] cipherTxt = cipher.doFinal(in.getBytes());
+
+        return Base64.getEncoder().encodeToString(cipherTxt);
+    }
+    public String decrypt(String algo, String cipherTxt, SecretKey key, IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance(algo);
+        cipher.init(Cipher.DECRYPT_MODE, key, iv);
+        byte[] plainTxt = cipher.doFinal(Base64.getDecoder().decode(cipherTxt));
+
+        return new String(plainTxt);
+    }
+    public SecretKey generateKey() throws NoSuchAlgorithmException {
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        keyGenerator.init(256);
+        SecretKey key = keyGenerator.generateKey();
+
+        return key;
+    }
+
 }

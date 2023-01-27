@@ -1,5 +1,6 @@
 package com.divby0exc.visma.repository;
 
+import com.divby0exc.visma.db.DB;
 import com.divby0exc.visma.model.Receipt;
 import com.divby0exc.visma.model.ReceiptList;
 import com.divby0exc.visma.model.Registrator;
@@ -19,6 +20,10 @@ import static java.time.LocalTime.now;
 
 @Repository
 public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
+    private DB db;
+    public VismaRepository() {
+        db = db.getInstance();
+    }
     public final String DB_NAME = "visma";
     public final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/visma";
     public String getIdFromUser = "SELECT id FROM authentication WHERE username=?";
@@ -104,7 +109,7 @@ public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
         ReceiptList recipes = new ReceiptList(username);
 
         try {
-            con = DriverManager.getConnection(CONNECTION_STRING, "root", "");
+            con = db.getConnection();
             ps = con.prepareStatement(linkSql);
 
             ps.setString(1, username);
@@ -161,7 +166,7 @@ public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
     public Registrator retrieveCredentials(String username) {
         Registrator user = new Registrator();
         try {
-            con = DriverManager.getConnection(CONNECTION_STRING, "root", "");
+            con = db.getConnection();
             ps = con.prepareStatement("SELECT * FROM authentication WHERE username=?");
 
             ps.setString(1, username);
@@ -184,6 +189,10 @@ public class VismaRepository implements IVismaRepository, RowMapper<Receipt> {
             System.out.println("Something went wrong " + e.getMessage());
             e.printStackTrace();
         }
+        assert rs == null : "ResultSet wasn't closed properly in repo";
+        assert ps == null : "PreparedStatement wasn't closed properly in repo";
+        assert con == null : "Connection wasn't closed properly in repo";
+
         return user;
     }
 
