@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,9 +11,11 @@
         <module name="Snake" />
         <module name="SendIt" />
         <module name="ShareCare" />
+        <module name="JSONTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JSONTest" target="19" />
       <module name="SendIt" target="19" />
       <module name="ShareCare" target="19" />
       <module name="Snake" target="19" />
