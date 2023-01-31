@@ -1,21 +1,22 @@
 package com.divby0exc.shakespearinsults.controller;
 
-import com.divby0exc.shakespearinsults.service.ShakespearService;
+import com.divby0exc.shakespearinsults.model.InsultRank;
+import com.divby0exc.shakespearinsults.service.ShakespearServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RankController {
 
     @Autowired
-    ShakespearService shakespearService;
+    ShakespearServiceImpl shakespearServiceImpl;
 
     @GetMapping("rank/{id}")
     public ResponseEntity<?> getRank() {
+        InsultRank ir = new InsultRank();
 
     }
     @GetMapping("ranks")

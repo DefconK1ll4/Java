@@ -1,6 +1,6 @@
 package com.divby0exc.shakespearinsults.controller;
 
-import com.divby0exc.shakespearinsults.service.ShakespearService;
+import com.divby0exc.shakespearinsults.service.ShakespearServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/shakespear/*")
 public class ShakespearController {
     @Autowired
-    ShakespearService shakespearService;
+    ShakespearServiceImpl shakespearServiceImpl;
 
     @GetMapping("get-all-insults")
     public ResponseEntity<?> getAllInsults() {
@@ -33,10 +33,6 @@ public class ShakespearController {
     }
     @PostMapping("add-insult")
     public ResponseEntity<?> addInsult() {
-
-    }
-    @PostMapping("vote-for-insult")
-    public ResponseEntity<?> voteForInsult() {
 
     }
 }
