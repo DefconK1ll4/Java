@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="visma" />
+        <module name="ShakespearInsults" />
         <module name="Snake" />
         <module name="SendIt" />
         <module name="ShareCare" />
@@ -16,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="JSONTest" target="19" />
       <module name="SendIt" target="19" />
+      <module name="ShakespearInsults" target="19" />
       <module name="ShareCare" target="19" />
       <module name="Snake" target="19" />
       <module name="visma" target="17" />
@@ -23,6 +25,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ShakespearInsults" options="-parameters" />
       <module name="visma" options="-parameters" />
     </option>
   </component>
