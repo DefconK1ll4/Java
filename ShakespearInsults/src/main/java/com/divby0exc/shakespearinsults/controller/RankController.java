@@ -1,19 +1,18 @@
 package com.divby0exc.shakespearinsults.controller;
 
 import com.divby0exc.shakespearinsults.model.InsultRank;
-import com.divby0exc.shakespearinsults.service.ShakespearServiceImpl;
+import com.divby0exc.shakespearinsults.repository.RankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-/**
+import org.springframework.web.bind.annotation.*;
+
 @RestController
+@RequestMapping("/shakespear/*")
 public class RankController {
-
     @Autowired
-    ShakespearServiceImpl shakespearServiceImpl;
+    RankRepository repo;
 
+/**
     @GetMapping("rank/{id}")
     public ResponseEntity<?> getRank() {
         InsultRank ir = new InsultRank();
@@ -23,11 +22,15 @@ public class RankController {
     public ResponseEntity<?> getAllRanks() {
 
     }
+**/
     @PostMapping("add-rank")
-    public ResponseEntity<?> addRank() {
+    public ResponseEntity<?> addRank(@RequestBody InsultRank ir) {
+        repo.saveRank(ir);
 
+        return ResponseEntity
+                .ok("Added to db");
     }
-    @GetMapping("ranks/between-dates")
+/**    @GetMapping("ranks/between-dates")
     public ResponseEntity<?> rankBetweenDates() {
 
     }
@@ -46,3 +49,4 @@ public class RankController {
 
 }
 **/
+}

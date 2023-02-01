@@ -69,15 +69,18 @@ public class RankRepository implements RowMapper<InsultRank> {
     }
 
     public Optional<InsultRank> fetchRank(Long rankId) {
-        return rankRepo.findById(rankId);
+        //return rankRepo.findById(rankId);
+        return null;
     }
     public List<InsultRank> fetchRankList() {
-        return (List<InsultRank>) rankRepo.findAll();
+        //return (List<InsultRank>) rankRepo.findAll();
+        return null;
     }
     public void saveRank(InsultRank rank) {
         SimpleJdbcInsert jdbcInsert =
-                new SimpleJdbcInsert(dataSource).withTableName("rank");
+                new SimpleJdbcInsert(dataSource).withTableName("insultrank");
         Map<String, Object> param = new HashMap<>();
+        param.put("id", rank.getId());
         param.put("create_dt", rank.getCreate_dt());
         param.put("rank", rank.getRank());
 

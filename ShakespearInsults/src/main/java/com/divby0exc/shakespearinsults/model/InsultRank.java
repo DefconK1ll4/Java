@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.id.factory.internal.AutoGenerationTypeStrategy;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -19,7 +20,7 @@ public class InsultRank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "create_dt")
-    private Date create_dt;
+    private Date create_dt = Date.valueOf(LocalDate.now());
     @Column(name ="rank")
     private int rank;
 

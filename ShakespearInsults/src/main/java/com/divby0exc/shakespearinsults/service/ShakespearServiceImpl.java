@@ -15,9 +15,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ShakespearServiceImpl implements ShakespearService {
-
+//@Service
+//public class ShakespearServiceImpl implements ShakespearService {
+/**
     @Autowired
     private ShakespearRepository insultRepo;
     @Autowired
@@ -87,10 +87,10 @@ public class ShakespearServiceImpl implements ShakespearService {
         }
 
         return course;
-         **/
+
         return null;
     }
-
+/**
     @Override
     public void deleteInsultById(Long insultId) {
 
@@ -100,4 +100,5 @@ public class ShakespearServiceImpl implements ShakespearService {
     public void deleteRankById(Long rankId) {
 
     }
-}
+**/
+//}
