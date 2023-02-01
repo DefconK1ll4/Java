@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,31 +19,36 @@ public class ShakespearController {
 
     @GetMapping("get-all-insults")
     public List<ShakespearModel> getAllInsults() {
-
-//        return shakespearService.fetchInsultList();
-        return null;
+        return new ArrayList<>(repo.fetchInsultList());
     }
     @GetMapping("get-insult/{id}")
-    public ResponseEntity<?> getInsult() {
-        return null;
+    public ShakespearModel getInsult(@PathVariable Long id) {
+        return repo.findById(id);
     }
     @DeleteMapping("get-insult/{id}")
-    public ResponseEntity<?> deleteInsult() {
-    return null;
+    public ResponseEntity<?> deleteInsult(@PathVariable Long id) {
+    return
+            ResponseEntity
+                    .status(200)
+                    .body(repo.deleteInsultById(id));
     }
     @PutMapping("replaceInsult/{id}")
     public ResponseEntity<?> replaceInsult() {
         return null;
     }
     @PatchMapping("update-field/{id}")
-    public ShakespearModel partialUpdate(@RequestBody ShakespearModel shakespearModel, @PathVariable Long insultId) {
-        //return shakespearService.updateInsult(shakespearModel, insultId);
-        return null;
+    public ResponseEntity<?> partialUpdate(@RequestBody ShakespearModel shakespearModel, @PathVariable Long insultId) {
+        return
+                ResponseEntity
+                .status(200)
+                .body(repo.updateInsult(shakespearModel, insultId));
     }
     @PostMapping("add-insult")
     public ResponseEntity<?> addInsult(@RequestBody ShakespearModel shakespearModel) {
         repo.saveInsult(shakespearModel);
 
-        return ResponseEntity.ok("Added insult to db");
+        return
+                ResponseEntity
+                        .ok("Added insult to db");
     }
 }

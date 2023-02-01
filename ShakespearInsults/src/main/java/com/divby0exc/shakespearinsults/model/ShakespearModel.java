@@ -18,5 +18,5 @@ public class ShakespearModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "content")
-    private String insult;
+    private String content;
 }
