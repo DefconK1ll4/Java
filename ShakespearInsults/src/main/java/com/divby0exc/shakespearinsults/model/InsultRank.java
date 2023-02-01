@@ -1,9 +1,6 @@
 package com.divby0exc.shakespearinsults.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.id.factory.internal.AutoGenerationTypeStrategy;
 
@@ -15,12 +12,15 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Getter @Setter
+@Table(name = "rank")
 public class InsultRank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "create_dt")
     private Date create_dt;
+    @Column(name ="rank")
     private int rank;
 
 }

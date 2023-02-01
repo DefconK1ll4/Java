@@ -1,10 +1,9 @@
 package com.divby0exc.shakespearinsults.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.repository.Query;
+
 
 @Entity
 @Data
@@ -15,8 +14,9 @@ import lombok.*;
 public class ShakespearModel {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "content")
     private String insult;
-
 }
