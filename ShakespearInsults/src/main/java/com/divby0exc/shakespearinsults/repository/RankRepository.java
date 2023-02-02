@@ -2,8 +2,8 @@ package com.divby0exc.shakespearinsults.repository;
 
 import com.divby0exc.shakespearinsults.db.ShakespearDB;
 import com.divby0exc.shakespearinsults.model.InsultRank;
+import com.divby0exc.shakespearinsults.model.ShakespearModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class RankRepository implements RowMapper<InsultRank> {
@@ -24,6 +21,8 @@ public class RankRepository implements RowMapper<InsultRank> {
     }
     @Autowired
     DataSource dataSource;
+    @Autowired
+    ShakespearRepository shakeRepository;
     @Override
     public InsultRank mapRow(ResultSet rs, int rowNum) throws SQLException {
         InsultRank ir = new InsultRank();
@@ -68,19 +67,19 @@ public class RankRepository implements RowMapper<InsultRank> {
         return null;
     }
 
-    public Optional<InsultRank> fetchRank(Long rankId) {
-        //return rankRepo.findById(rankId);
-        return null;
+    public ShakespearModel fetchRank(Long rankId) {
+        ShakespearModel sm = shakeRepository.findById(rankId);
+        return sm;
     }
-    public List<InsultRank> fetchRankList() {
-        //return (List<InsultRank>) rankRepo.findAll();
-        return null;
+    public List<InsultRank> fetchRankList(Long id) {
+
     }
     public void saveRank(InsultRank rank) {
         SimpleJdbcInsert jdbcInsert =
-                new SimpleJdbcInsert(dataSource).withTableName("insultrank");
+                new SimpleJdbcInsert(dataSource).withTableName("insult_rank");
         Map<String, Object> param = new HashMap<>();
         param.put("id", rank.getId());
+        param.put("owner_id", rank.getOwner_id());
         param.put("create_dt", rank.getCreate_dt());
         param.put("rank", rank.getRank());
 

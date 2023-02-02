@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/shakespear/*")
 public class RankController {
@@ -18,11 +20,13 @@ public class RankController {
         InsultRank ir = new InsultRank();
 
     }
-    @GetMapping("ranks")
-    public ResponseEntity<?> getAllRanks() {
-
+ **/
+    @GetMapping("ranks/{id}")
+    public List<InsultRank> getAllRanks(@PathVariable Long id) {
+        repo.fetchRankList(id);
+        return repo.fetchRankList(id).getRankList();
     }
-**/
+
     @PostMapping("add-rank")
     public ResponseEntity<?> addRank(@RequestBody InsultRank ir) {
         repo.saveRank(ir);
