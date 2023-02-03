@@ -44,23 +44,21 @@ public class RankController {
         return ResponseEntity
                 .ok("Added to db");
     }
-/**    @GetMapping("ranks/between-dates")
-    public ResponseEntity<?> rankBetweenDates() {
-
+    @GetMapping("ranks/between-dates/{x},{y}")
+    public Map<ShakespearModel, List<InsultRank>> rankBetweenDates(@PathVariable int x, @PathVariable int y) {
+        return repo.getBetween(x,y);
     }
     @GetMapping("ranks/average-rank")
-    public ResponseEntity<?> averageRank() {
-
+    public Map<ShakespearModel, InsultRank> averageRank() {
+    return repo.getAverage();
     }
     @GetMapping("ranks/highest-rank")
-    public ResponseEntity<?> highestRankedInsult() {
-
+    public Map<ShakespearModel, InsultRank> highestRankedInsult() {
+    return repo.getHighestRank();
     }
     @GetMapping("ranks/lowest-rank")
-    public ResponseEntity<?> lowestRankedInsult() {
-
+    public Map<ShakespearModel, InsultRank> lowestRankedInsult() {
+        return repo.getLowestRank();
     }
 
-}
-**/
 }

@@ -5,6 +5,7 @@ import com.divby0exc.shakespearinsults.model.InsultRank;
 import com.divby0exc.shakespearinsults.model.ShakespearModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -91,5 +92,21 @@ public class RankRepository implements RowMapper<InsultRank> {
         param.put("rank", rank.getRank());
 
         jdbcInsert.execute(param);
+    }
+
+    public List<InsultRank> getBetween(int x, int y) {
+        return null;
+    }
+
+    public InsultRank getAverage() {
+        return null;
+    }
+
+    public InsultRank getHighestRank() {
+        return null;
+    }
+
+    public InsultRank getLowestRank() {
+        return null;
     }
 }
