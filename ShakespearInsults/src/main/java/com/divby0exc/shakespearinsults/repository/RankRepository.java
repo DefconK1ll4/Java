@@ -4,6 +4,8 @@ import com.divby0exc.shakespearinsults.db.ShakespearDB;
 import com.divby0exc.shakespearinsults.model.InsultRank;
 import com.divby0exc.shakespearinsults.model.ShakespearModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -22,12 +24,13 @@ public class RankRepository implements RowMapper<InsultRank> {
     @Autowired
     DataSource dataSource;
     @Autowired
-    ShakespearRepository shakeRepository;
+    JdbcTemplate jdbc;
     @Override
     public InsultRank mapRow(ResultSet rs, int rowNum) throws SQLException {
         InsultRank ir = new InsultRank();
         ir.setId(rs.getLong("id"));
         ir.setCreate_dt(rs.getDate("create_dt"));
+        ir.setOwner_id(rs.getInt("owner_id"));
         ir.setRank(rs.getInt("rank"));
 
         return ir;
@@ -67,18 +70,22 @@ public class RankRepository implements RowMapper<InsultRank> {
         return null;
     }
 
-    public ShakespearModel fetchRank(Long rankId) {
-        ShakespearModel sm = shakeRepository.findById(rankId);
-        return sm;
+    public InsultRank fetchRank(Long rankId) {
+        return null;
     }
     public List<InsultRank> fetchRankList(Long id) {
+        return jdbc.query("SELECT owner_id, `rank` FROM insult_rank WHERE owner_id=?", (rs, rowNum) -> {
+            InsultRank ir = new InsultRank();
+            ir.setOwner_id(rs.getInt("owner_id"));
+            ir.setRank(rs.getInt("rank"));
 
+            return ir;
+        }, id);
     }
     public void saveRank(InsultRank rank) {
         SimpleJdbcInsert jdbcInsert =
                 new SimpleJdbcInsert(dataSource).withTableName("insult_rank");
         Map<String, Object> param = new HashMap<>();
-        param.put("id", rank.getId());
         param.put("owner_id", rank.getOwner_id());
         param.put("create_dt", rank.getCreate_dt());
         param.put("rank", rank.getRank());

@@ -23,11 +23,9 @@ public class InsultRank {
     private Date create_dt = Date.valueOf(LocalDate.now());
     @Column(name ="rank")
     private int rank;
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", insertable = false, updatable = false)
     private int owner_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", updatable = false, insertable = false)
-    private ShakespearModel insult;
-
+    @ManyToOne
+    private ShakespearModel owner;
 }

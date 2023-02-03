@@ -1,6 +1,7 @@
 package com.divby0exc.shakespearinsults.repository;
 
 import com.divby0exc.shakespearinsults.db.ShakespearDB;
+import com.divby0exc.shakespearinsults.model.InsultRank;
 import com.divby0exc.shakespearinsults.model.ShakespearModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -22,6 +23,8 @@ public class ShakespearRepository {
     JdbcTemplate jdbc;
     @Autowired
     DataSource dataSource;
+    @Autowired
+    RankRepository rankRepo;
 
         public void
         saveInsult(ShakespearModel insult) {
@@ -42,6 +45,7 @@ public class ShakespearRepository {
                         ShakespearModel insult = new ShakespearModel();
                         insult.setId(rs.getLong("id"));
                         insult.setContent(rs.getString("content"));
+                        insult.setRankList(rankRepo.fetchRankList(id));
 
                         return insult;
                     });
