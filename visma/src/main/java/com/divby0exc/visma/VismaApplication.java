@@ -20,25 +20,30 @@ public class VismaApplication {
  * done
  *
  * Implement methods from repo into edit and delete controller
- *dpme
+ * done
  * Retrieve info from an invoice etc
- *done
+ * done
  * Add rest of the repo methods in service and evaluate things
- *dome
+ * done
  * Design the pages a bit better
- *done
+ * done
  * implement the new login page
  * done
  * implement the new register page
- * dpme
+ * done
  * find a nicer form to register receipt
- *  done
+ * done
  */
 // TODO
 /***
  * Obvious flaws
  * back button on edit page still saves the edit -.-
  * i cannot move the back button form outside the save form without breaking design.
- *
  */
-
+// TODO 2023-02-07
+/**
+ * create a sidebar
+ * implement a ws
+ * create a representation class
+ * push information that a crud operation has been made to the sidebar
+ */

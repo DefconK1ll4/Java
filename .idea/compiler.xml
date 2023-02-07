@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="visma" />
-        <module name="ShakespearInsults" />
         <module name="Snake" />
+        <module name="WsWebAppWithMSGAndJSON" />
         <module name="SendIt" />
+        <module name="WsWebAppWithPostman" />
+        <module name="ShakespearInsults" />
         <module name="ShareCare" />
       </profile>
     </annotationProcessing>
@@ -21,11 +23,15 @@
       <module name="ShareCare" target="19" />
       <module name="Snake" target="19" />
       <module name="visma" target="17" />
+      <module name="WsWebAppWithMSGAndJSON" target="19" />
+      <module name="WsWebAppWithPostman" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ShakespearInsults" options="-parameters" />
+      <module name="WsWebAppWithMSGAndJSON" options="-parameters" />
+      <module name="WsWebAppWithPostman" options="-parameters" />
       <module name="visma" options="-parameters" />
     </option>
   </component>
