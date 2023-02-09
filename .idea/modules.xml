@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/ClientServer/ClientServer.iml" filepath="$PROJECT_DIR$/ClientServer/ClientServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" filepath="$PROJECT_DIR$/DesignPattern/FactoryMethod/FactoryMethod.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProject.iml" filepath="$PROJECT_DIR$/.idea/IdeaProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PhoneDuck/PhoneDuck.iml" filepath="$PROJECT_DIR$/PhoneDuck/PhoneDuck.iml" />
       <module fileurl="file://$PROJECT_DIR$/SendIt/SendIt.iml" filepath="$PROJECT_DIR$/SendIt/SendIt.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShakespearInsults/ShakespearInsults.iml" filepath="$PROJECT_DIR$/ShakespearInsults/ShakespearInsults.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShareCare/ShareCare.iml" filepath="$PROJECT_DIR$/ShareCare/ShareCare.iml" />
@@ -16,7 +15,6 @@
       <module fileurl="file://$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" filepath="$PROJECT_DIR$/TelephoneBook/TelephoneBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" filepath="$PROJECT_DIR$/DesignPattern/Testing/Testing.iml" />
       <module fileurl="file://$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" filepath="$PROJECT_DIR$/TruckDockingSOLID/TruckDockingSOLID.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WsWebAppWithMSGAndJSON/WsWebAppWithMSGAndJSON.iml" filepath="$PROJECT_DIR$/WsWebAppWithMSGAndJSON/WsWebAppWithMSGAndJSON.iml" />
       <module fileurl="file://$PROJECT_DIR$/WsWebAppWithPostman/WsWebAppWithPostman.iml" filepath="$PROJECT_DIR$/WsWebAppWithPostman/WsWebAppWithPostman.iml" />
       <module fileurl="file://$PROJECT_DIR$/visma/visma.iml" filepath="$PROJECT_DIR$/visma/visma.iml" />
     </modules>

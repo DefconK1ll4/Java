@@ -1,35 +1,36 @@
 package com.divby0exc.wswebappwithpostman.controller;
 
-import com.divby0exc.wswebappwithpostman.model.Animal;
-import com.divby0exc.wswebappwithpostman.model.Msg;
-import com.divby0exc.wswebappwithpostman.service.AnimalServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.divby0exc.wswebappwithpostman.model.UserDefinedEndpoint;
+import jakarta.websocket.*;
+import jakarta.websocket.server.PathParam;
+import jakarta.websocket.server.ServerEndpoint;
+import org.springframework.messaging.Message;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
-@RestController
-@RequestMapping("/animal/*")
+@ServerEndpoint(value = "/sub/{annons}")
 public class PageController {
-    @Autowired
-    AnimalServiceImpl service;
-    @Autowired
-    MsgController msgCon;
 
-    @GetMapping("get/{id}")
-    public Msg getAnimal(@PathVariable Long id) {
-        Animal a = service.getAnimalById(id);
-        Msg msg = new Msg();
-        msg.setMessage("------Requested an animal------\n" + a.toString());
-        return msgCon.send( msg);
+    private Session session;
+    private static Set<UserDefinedEndpoint> endpoints = new CopyOnWriteArraySet<>();
+    private static Map<String, String> annonser = new HashMap<>();
 
-
+    @OnOpen
+    public void onOpen(Session session, @PathParam("annons") String annons) throws IOException {
+    }
+    @OnMessage
+    public void onMessage(Session session, Message message) throws IOException {
 
     }
-    @PostMapping("add")
-    public Msg addAnimal( @RequestBody Animal a ) {
+    @OnClose
+    public void onClose(Session session) throws IOException {
 
-        service.save(a);
-        Msg msg = new Msg();
-        msg.setMessage("------Created an animal------\n" + a.toString());
-        return msgCon.send(msg);
+    }
+    @OnError
+    public void onError(Session session, Throwable throwable) {
+
     }
 }

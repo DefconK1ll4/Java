@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="visma" />
         <module name="Snake" />
-        <module name="WsWebAppWithMSGAndJSON" />
         <module name="SendIt" />
         <module name="WsWebAppWithPostman" />
         <module name="ShakespearInsults" />
