@@ -1,6 +1,6 @@
 package com.divby0exc.wswebappwithpostman.controller;
 
-import com.divby0exc.wswebappwithpostman.model.Msg;
+import com.divby0exc.wswebappwithpostman.model.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class MsgController {
     @MessageMapping("/app")
     @SendTo("/container/msg")
-    public Msg send(Msg msg) {
-        return msg;
+    public Message send(Message message) {
+        return message;
     }
 }
