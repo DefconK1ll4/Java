@@ -2,10 +2,10 @@ package com.divby0exc.wswebappwithpostman.encoding;
 
 import com.divby0exc.wswebappwithpostman.model.Message;
 import com.google.gson.Gson;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.EndpointConfig;
 
-import javax.websocket.DecodeException;
-import javax.websocket.Decoder;
-import javax.websocket.EndpointConfig;
 
 public class MessageDecoder implements Decoder.Text<Message> {
     private static Gson gson = new Gson();
