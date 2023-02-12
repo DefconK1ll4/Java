@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,8 @@ import static java.util.Arrays.stream;
 public class APIController {
     @Autowired
     ChannelServiceImpl cs;
+    @Autowired
+    private SimpMessagingTemplate simp;
 
     final Logger logger = LoggerFactory.getLogger(APIController.class);
 
@@ -47,13 +51,20 @@ public class APIController {
     }
     /**[POST] - /channels/ ← skapar en ny kanal som annonseras i den permanenta chatt-kanalen.**/
     @PostMapping("/channels/{channelId}")
-    public ResponseEntity addNewChannel(@PathVariable String channelId) {
-        String id = channelId;
-        logger.atInfo().log("Fetched id: {}",id);
+    public ResponseEntity addNewChannel(@PathVariable Long channelId) {
+        DTOChannel newChannel = new DTOChannel(channelId);
+        cs.save(newChannel);
+
+        logger.atInfo().log("Fetched id: {}",channelId);
+        logger.atInfo().log("Added new channel to db");
+
+        simp.convertAndSend("/app/announcements", newChannel);
+        logger.atDebug().log("Sended channel dto to announcements");
+
         return
                 ResponseEntity
                         .status(200)
-                        .body("Channel with ID: " + channelId + " has been created");
+                        .build();
     }
     /**[DELETE] /channels/{id} ← tar bort en annonserad kanal**/
     @DeleteMapping("/channels/{channelId}")
@@ -63,8 +74,9 @@ public class APIController {
         Assert.isTrue(exists, "Deleted channel with ID: " + channelId);
         cs.deleteDTOChannelById(channelId);
         logger.atInfo().setMessage("Deleted channel from DB").log();
-        return ResponseEntity
-                .status(410)
-                .build();
+        return
+                ResponseEntity
+                        .status(410)
+                        .build();
     }
 }

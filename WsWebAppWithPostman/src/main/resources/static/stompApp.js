@@ -18,10 +18,10 @@ function connect() {
     client.connect({}, frame => {
         setConnected(true);
         console.log('Connected: ' + frame);
-        client.subscribe('/container/msg', payload => {
-            msgList = document.querySelector('.msgContainer');
-            msgItem = document.createElement('li');
-            msgItem.appendChild(document.createTextNode(JSON.parse(payload.body).msgItem));
+        client.subscribe('/sub/channels', payload => {
+            const msgList = document.querySelector('.message-list');
+            const msgItem = document.createElement('li');
+            msgItem.textContent = payload.body;
             msgList.appendChild(msgItem);
         });
     });

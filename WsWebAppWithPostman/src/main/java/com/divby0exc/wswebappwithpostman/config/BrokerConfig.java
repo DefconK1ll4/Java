@@ -12,7 +12,7 @@ public class BrokerConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry path) {
         path.enableSimpleBroker("/sub");
-        path.setApplicationDestinationPrefixes("/app");
+        path.setApplicationDestinationPrefixes("/sub");
     }
 
     @Override
