@@ -34,4 +34,8 @@ public class ChannelServiceImpl implements ChannelService {
         return repo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
     }
+    @Override
+    public boolean exists(Long id) {
+        return repo.existsById(id);
+    }
 }

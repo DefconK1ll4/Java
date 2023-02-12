@@ -12,17 +12,12 @@ public class BrokerConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry path) {
         path.enableSimpleBroker("/sub");
-
-        for(int i = 0; i < userDefinedEndpoint.getEndpoints().size(); i++) {
-            userDefinedEndpoint.getEndpoints().get(i);
-        }
         path.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws");
-        registry.addEndpoint(userDefinedEndpoint.getEndpoints());
         registry.addEndpoint("/ws").withSockJS();
     }
 }

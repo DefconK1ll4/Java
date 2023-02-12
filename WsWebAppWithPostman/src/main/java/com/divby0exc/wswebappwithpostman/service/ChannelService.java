@@ -11,4 +11,5 @@ public interface ChannelService {
     public void deleteDTOChannelById(Long id);
     public List<DTOChannel> getAll();
     public DTOChannel getDTOChannelById(Long id);
+    public boolean exists(Long id);
 }
