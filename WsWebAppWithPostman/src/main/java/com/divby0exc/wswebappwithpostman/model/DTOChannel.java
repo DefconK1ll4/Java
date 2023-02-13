@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DTOChannel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
 
     public String toString() {
         return "Channel with ID: " + id + " has been created.";

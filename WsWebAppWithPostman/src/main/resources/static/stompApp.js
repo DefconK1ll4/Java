@@ -13,12 +13,12 @@ function setConnected(connected) {
     $("#msgItem").html("");
 }
 function connect() {
-    let sock = new SockJS("http://localhost:8080/ws");
+    let sock = new SockJS("ws://localhost:8080/ws");
     client = Stomp.over(sock);
     client.connect({}, frame => {
         setConnected(true);
         console.log('Connected: ' + frame);
-        client.subscribe('/sub/channels', payload => {
+        client.subscribe('/user/sub/channels', payload => {
             const msgList = document.querySelector('.message-list');
             const msgItem = document.createElement('li');
             msgItem.textContent = payload.body;

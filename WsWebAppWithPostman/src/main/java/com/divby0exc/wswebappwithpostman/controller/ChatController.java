@@ -2,15 +2,13 @@ package com.divby0exc.wswebappwithpostman.controller;
 
 import com.divby0exc.wswebappwithpostman.model.DTOChannel;
 import com.divby0exc.wswebappwithpostman.model.Message;
-import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.session.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
 
@@ -20,9 +18,10 @@ public class ChatController {
 
     /** /sub/channels/ ← en socket för den permanenta chatt-kanalen. Här skickas annonser som har skapats via POST förfrågan.**/
     @MessageMapping("/announcements")
-    @SendTo("/sub/channels")
-    public String send(DTOChannel channel) {
-        return "New channel was registered with ID: " + channel.getId();
+    @SendTo("/sub")
+    public String send(@Payload String msg, DTOChannel channel) throws IOException {
+        System.out.println(msg);
+        return msg;
     }
     /** /sub/chat/ ← en (eller flera) socket där du ansluter mot en
      * specifik kanal (via id-värde) och lyssnar på nya meddelanden
@@ -30,8 +29,8 @@ public class ChatController {
     @MessageMapping("/chat/{chat_id}")
     @SendTo("/sub/chat/{chat_id}")
     public Message sendToChat(Message message, jakarta.websocket.Session session) throws IOException {
-        session.getBasicRemote().sendText(message.getFrom() + "\n" + message.getContent());
-        return message;
+
+        return null;
     }
     /**
     @OnOpen
