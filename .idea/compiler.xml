@@ -11,19 +11,14 @@
         <module name="Snake" />
         <module name="SendIt" />
         <module name="WsWebAppWithPostman" />
+        <module name="WsWithJavax" />
         <module name="ShakespearInsults" />
         <module name="ShareCare" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="JSONTest" target="19" />
-      <module name="SendIt" target="19" />
-      <module name="ShakespearInsults" target="19" />
-      <module name="ShareCare" target="19" />
-      <module name="Snake" target="19" />
-      <module name="visma" target="17" />
       <module name="WsWebAppWithMSGAndJSON" target="19" />
-      <module name="WsWebAppWithPostman" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -31,6 +26,7 @@
       <module name="ShakespearInsults" options="-parameters" />
       <module name="WsWebAppWithMSGAndJSON" options="-parameters" />
       <module name="WsWebAppWithPostman" options="-parameters" />
+      <module name="WsWithJavax" options="-parameters" />
       <module name="visma" options="-parameters" />
     </option>
   </component>

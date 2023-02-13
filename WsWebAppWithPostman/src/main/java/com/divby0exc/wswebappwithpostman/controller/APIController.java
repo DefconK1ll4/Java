@@ -1,5 +1,6 @@
 package com.divby0exc.wswebappwithpostman.controller;
 
+import com.divby0exc.wswebappwithpostman.handler.ServerWebSocketHandler;
 import com.divby0exc.wswebappwithpostman.model.DTOChannel;
 import com.divby0exc.wswebappwithpostman.model.Message;
 import com.divby0exc.wswebappwithpostman.service.ChannelServiceImpl;
@@ -52,14 +53,14 @@ public class APIController {
     @PostMapping("/channels/{channelId}")
     public ResponseEntity addNewChannel(@RequestBody DTOChannel newChannel) {
         cs.save(newChannel);
-
+        ServerWebSocketHandler sh = new ServerWebSocketHandler();
         logger.atInfo().log("Fetched id: {}",newChannel.getId());
         logger.atInfo().log("Added new channel to db");
         Message msg = new Message();
         msg.setFrom("Server");
         msg.setTo("ALL");
-        msg.setContent("New channel was registered with ID: " + newChannel.getId());
-
+        msg.setContent("New channel was registered with title: " + newChannel.getTitle());
+        sh.setRegisteredChannel(msg);
         logger.atDebug().log("Sended channel dto to announcements");
 
         return
