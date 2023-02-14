@@ -17,6 +17,11 @@ public class DTOChannel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
+    private String username;
+    public DTOChannel(String title, String username) {
+        this.title = title;
+        this.username = username;
+    }
 
     public String toString() {
         return "Channel with ID: " + id + " has been created.";

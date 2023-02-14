@@ -18,4 +18,8 @@ public class DTOUser {
     Long id;
 
     private String username;
+
+    public DTOUser(String username) {
+        this.username = username;
+    }
 }

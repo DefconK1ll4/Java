@@ -8,19 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.messaging.support.MessageHeaderAccessor;
-import org.springframework.session.Session;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.Arrays.stream;
 
 
 
@@ -50,18 +43,23 @@ public class APIController {
                         .body(channels);
     }
     /**[POST] - /channels/ ← skapar en ny kanal som annonseras i den permanenta chatt-kanalen.**/
-    @PostMapping("/channels/{channelId}")
-    public ResponseEntity addNewChannel(@RequestBody DTOChannel newChannel) {
+    @PostMapping("/channels")
+    public ResponseEntity addNewChannel(@RequestBody DTOChannel newChannel) throws IOException {
         cs.save(newChannel);
-        ServerWebSocketHandler sh = new ServerWebSocketHandler();
+
         logger.atInfo().log("Fetched id: {}",newChannel.getId());
+        logger.atInfo().log("Fetched title: {}", newChannel.getTitle());
+        logger.atInfo().log("Fetched username: {}", newChannel.getUsername());
         logger.atInfo().log("Added new channel to db");
         Message msg = new Message();
-        msg.setFrom("Server");
-        msg.setTo("ALL");
+        msg.setFrom("[Server announcement]");
         msg.setContent("New channel was registered with title: " + newChannel.getTitle());
-        sh.setRegisteredChannel(msg);
-        logger.atDebug().log("Sended channel dto to announcements");
+        System.out.println(msg.getFrom());
+        System.out.println(msg.getContent());
+
+        ServerWebSocketHandler.broadcast(msg.getContent());
+        ServerWebSocketHandler.broadcast(msg.getFrom());
+        logger.atInfo().log("Sended channel dto to announcements");
 
         return
                 ResponseEntity

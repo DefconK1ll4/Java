@@ -1,7 +1,6 @@
 package com.divby0exc.wswebappwithpostman.service;
 
 import com.divby0exc.wswebappwithpostman.model.DTOChannel;
-import com.divby0exc.wswebappwithpostman.repository.ChannelRepository;
 
 import java.util.List;
 
