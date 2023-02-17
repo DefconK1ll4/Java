@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="myFortuneService"
+          class="com.divby0exc.ioc_test.service.HappyFortuneService">
+    </bean>
+    <bean id="baseBallCoach"
+          class="com.divby0exc.ioc_test.model.BaseBallCoach">
+        <constructor-arg ref="myFortuneService" />
+    </bean>
+    <bean id="trackCoach"
+          class="com.divby0exc.ioc_test.model.TrackCoach">
+        <constructor-arg ref="myFortuneService" />
+    </bean>
+</beans>

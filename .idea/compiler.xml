@@ -11,18 +11,22 @@
         <module name="Snake" />
         <module name="SendIt" />
         <module name="WsWebAppWithPostman" />
+        <module name="IoC_DI_Test" />
         <module name="WsWithJavax" />
         <module name="ShakespearInsults" />
         <module name="ShareCare" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="DI_Spring" target="19" />
       <module name="JSONTest" target="19" />
       <module name="WsWebAppWithMSGAndJSON" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="DI_Spring" options="-parameters" />
+      <module name="IoC_DI_Test" options="-parameters" />
       <module name="ShakespearInsults" options="-parameters" />
       <module name="WsWebAppWithMSGAndJSON" options="-parameters" />
       <module name="WsWebAppWithPostman" options="-parameters" />
