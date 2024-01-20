@@ -16,9 +16,9 @@ public class Main {
      Port for SSL: 465
      */
     public static void main(String[] args) {
-        final String fromEmail = "seddigh.daniel@gmail.com"; //requires valid gmail id
-        final String password = "tsxopmffhvrzzmkr"; // correct password for gmail id
-        final String toEmail = "linn.sedigh@gmail.com"; // can be any email id
+        final String fromEmail = ""; //requires valid gmail id
+        final String password = ""; // correct password for gmail id
+        final String toEmail = ""; // can be any email id
 
         System.out.println("SSLEmail Start");
         Properties props = new Properties();
